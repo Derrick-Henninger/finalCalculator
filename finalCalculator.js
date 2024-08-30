@@ -1,4 +1,12 @@
 
+const firstNumber = a;
+const secondNumber = b;
+let operator;
+
+const operate = function (a, b, operator) {
+    
+}
+// Combine all math into one function?
 const add = function(a, b) {
 	return a + b;
 };
