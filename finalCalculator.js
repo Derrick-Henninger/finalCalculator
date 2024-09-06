@@ -2,6 +2,7 @@
 let firstNumber = '';
 let secondNumber = '';
 let operator = null;
+let operatorDisplay;
 
 const operate = function (a, b, operator) {
     if (operator == add) {
@@ -15,7 +16,6 @@ const operate = function (a, b, operator) {
 	}else if(operator == power){
 		return power(a,b);
 	};
-	
 };
 
 const add = function(a, b) {
@@ -34,10 +34,9 @@ const power = function(a, b) {
 	return Math.pow(a, b);
 };
 
-console.log(divide(6, 3));
-
 const body = document.querySelector("body");
 const calcContainer = document.createElement("div");
+calcContainer.setAttribute("ID", "calcContainer");
 body.appendChild(calcContainer);
 
 calcContainer.addEventListener('click', (event) => {
@@ -47,8 +46,7 @@ calcContainer.addEventListener('click', (event) => {
 			firstNumber = '';
 			secondNumber = '';
 			operator = null;
-			
-			displayBox.textContent = '0';
+			displayBox.textContent = '';
 			break;
 		case 'zeroBtn':
 			if (operator === null) { 
@@ -72,7 +70,6 @@ calcContainer.addEventListener('click', (event) => {
 			}else{
 				secondNumber +='2'
 			}
-			currentInput += '2';
 			displayBox.textContent += '2';
 			break;
 		case 'threeBtn':
@@ -138,50 +135,67 @@ calcContainer.addEventListener('click', (event) => {
 				console.log(firstNumber);
 			}else{
 				secondNumber = +secondNumber * -1;
-				//Need to pass the operator symbol to the displayBox, right not it passes the operator function
-				displayBox.textContent = `${firstNumber}`+ `${operator}` +`${secondNumber}`;
+				displayBox.textContent = `${firstNumber}${operatorDisplay}${secondNumber}`;
 			}
 			break;
 		case 'powerBtn':
 			displayBox.textContent += '^';
 			operator = power;
+			operatorDisplay = '^';
 			break;
 		case 'divideBtn':
 			displayBox.textContent += '/';
 			operator = divide;
+			operatorDisplay = '/';
 			break;
 		case 'multiplyBtn':
 			displayBox.textContent += 'x';
 			operator = multiply;
+			operatorDisplay = 'x';
 			break;
 		case 'addBtn':
 			displayBox.textContent += '+';
 			operator = add;
+			operatorDisplay = '+';
 			break;
 		case 'subtractBtn':
 			displayBox.textContent += '-';
 			operator = subtract;
+			operatorDisplay = '-';
 		case 'decimalBtn':
-			displayValue = 0;
+	
+			if (operator === null && firstNumber != firstNumber.includes('.')) { 
+				firstNumber +='.'; 
+				displayBox.textContent += '.';
+			}else if(secondNumber != secondNumber.includes('.')){
+				secondNumber +='.'
+				displayBox.textContent += '.';
+			}
 			break;
 		case 'equalBtn':
-			const a = +firstNumber;
-			const b = +secondNumber;
+			const a = parseFloat(firstNumber);
+			const b = parseFloat(secondNumber);
 			const result = operate(a, b, operator);
 			displayBox.textContent = result;
-			console.log(displayBox.textContent);
+	//find a way to use the result as the next first number to continue calculations
 			break;
 	}
 });
 
 const displayBox = document.createElement("div");
-//this needs to be width of entire calculator, or four buttons
+displayBox.setAttribute("ID", "displayBox");
 const rowOneButtons = document.createElement("div");
+	rowOneButtons.setAttribute("class", "rows");
 const rowTwoButtons = document.createElement("div");
+	rowTwoButtons.setAttribute("class", "rows");
 const rowThreeButtons = document.createElement("div");
+	rowThreeButtons.setAttribute("class", "rows");
 const rowFourButtons = document.createElement("div");
+	rowFourButtons.setAttribute("class", "rows");
 const rowFiveButtons = document.createElement("div");
-calcContainer.append(displayBox, rowOneButtons, rowTwoButtons, rowThreeButtons, rowThreeButtons, rowFourButtons, rowFiveButtons);
+	rowFiveButtons.setAttribute("class", "rows");
+calcContainer.append(displayBox, rowOneButtons, rowTwoButtons,  
+				rowThreeButtons, rowFourButtons, rowFiveButtons);
 
 const clearBtn = document.createElement("button");
 	clearBtn.textContent = "AC";
@@ -249,6 +263,3 @@ const equalBtn = document.createElement("button");
 	equalBtn.textContent = "=";
 	equalBtn.setAttribute("ID", "equalBtn");
 rowFiveButtons.append(zeroBtn, decimalBtn, equalBtn);
-//Make equal button twice the width of other buttons
-
-console.log(fourBtn);

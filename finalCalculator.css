@@ -1,0 +1,37 @@
+
+#calcContainer {
+    max-width: 200px;
+    max-height: 400px;
+    flex: 1;
+}
+
+#displayBox {
+    text-align: right;
+    min-height: 50px;
+    min-width: 10px;
+    border: solid, black, 1px;
+    font-size: 25px;
+}
+
+
+#clearBtn {
+    flex: auto;
+}
+
+.rows {
+    flex: 1;
+  
+    min-width: 500px;
+}
+
+#oneBtn, #twoBtn, #threeBtn, #fourBtn, #fiveBtn, 
+#sixBtn, #sevenBtn, #eightBtn, #nineBtn, #zeroBtn, #addBtn, 
+#subtractBtn, #multiplyBtn, #divideBtn, #decimalBtn, #powerBtn, #negNumBtn, #clearBtn {
+    min-width: 50px;
+    min-height: 50px;
+}
+
+#equalBtn {
+    min-width: 100px;
+    min-height: 50px;
+}
