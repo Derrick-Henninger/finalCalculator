@@ -1,8 +1,11 @@
 
-let firstNumber = '';
-let secondNumber = '';
+let firstNumber = ('').substring(0, 8);
+let secondNumber = ('').substring(0, 8);
+
 let operator = null;
 let operatorDisplay;
+
+
 
 const operate = function (a, b, operator) {
     if (operator == add) {
@@ -39,8 +42,11 @@ const calcContainer = document.createElement("div");
 calcContainer.setAttribute("ID", "calcContainer");
 body.appendChild(calcContainer);
 
+
+
 calcContainer.addEventListener('click', (event) => {
 	let target = event.target;
+	
 	switch (target.id) {
 		case 'clearBtn':
 			firstNumber = '';
@@ -49,84 +55,97 @@ calcContainer.addEventListener('click', (event) => {
 			displayBox.textContent = '';
 			break;
 		case 'zeroBtn':
-			if (operator === null) { 
+			if (operator === null && displayBox.textContent.length < 8) { 
 				firstNumber +='0'; 
-			}else{
-				secondNumber +='0'
+				displayBox.textContent += '0';
+			}else if (operator !== null && secondNumber.length < 8){
+				secondNumber +='0';
+				displayBox.textContent += '0';
 			}
-			displayBox.textContent += '0';
 			break;
 		case 'oneBtn':
-			if (operator === null) { 
+			if (operator === null && displayBox.textContent.length < 8) { 
 				firstNumber +='1'; 
-			}else{
-				secondNumber +='1'
+				displayBox.textContent += '1';
+			}else if (operator !== null && secondNumber.length < 8){
+				secondNumber +='1';
+				displayBox.textContent += '1';
 			}
-			displayBox.textContent += '1';
 			break;
 		case 'twoBtn':
-			if (operator === null) { 
+			if (operator === null && displayBox.textContent.length < 8) { 
 				firstNumber +='2'; 
-			}else{
-				secondNumber +='2'
+				displayBox.textContent += '2';
+			}else if (operator !== null && secondNumber.length < 8){
+				secondNumber +='2';
+				displayBox.textContent += '2';
 			}
-			displayBox.textContent += '2';
 			break;
 		case 'threeBtn':
-			if (operator === null) { 
+			if (operator === null && displayBox.textContent.length < 8) { 
 				firstNumber +='3'; 
-			}else{
-				secondNumber +='3'
+				displayBox.textContent += '3';
+			}else if (operator !== null && secondNumber.length < 8){
+				secondNumber +='3';
+				displayBox.textContent += '3';
 			}
-			displayBox.textContent += '3';
 			break;
 		case 'fourBtn':
-			if (operator === null) { 
+			if (operator === null && displayBox.textContent.length < 8) { 
 				firstNumber +='4'; 
-			}else{
-				secondNumber +='4'
+				displayBox.textContent += '4';
+			}else if (operator !== null && secondNumber.length < 8){
+				secondNumber +='4';
+				displayBox.textContent += '4';
 			}
-			displayBox.textContent += '4';
 			break;
 		case 'fiveBtn':
-			if (operator === null) { 
+			if (operator === null && displayBox.textContent.length < 8) { 
 				firstNumber +='5'; 
-			}else{
-				secondNumber +='5'
+				displayBox.textContent += '5';
+			}else if (operator !== null && secondNumber.length < 8){
+				secondNumber +='5';
+				displayBox.textContent += '5';
 			}
-			displayBox.textContent += '5';
 			break;
 		case 'sixBtn':
-			if (operator === null) { 
+			if (operator === null && displayBox.textContent.length < 8) { 
 				firstNumber +='6'; 
-			}else{
-				secondNumber +='6'
+				displayBox.textContent += '6';
+			}else if (operator !== null && secondNumber.length < 8){
+				secondNumber +='6';
+				displayBox.textContent += '6';
 			}
-			displayBox.textContent += '6';
 			break;
 		case 'sevenBtn':
-			if (operator === null) { 
+			if (operator === null && displayBox.textContent.length < 8) { 
 				firstNumber +='7'; 
-			}else{
-				secondNumber +='7'
+				displayBox.textContent += '7';
+			}else if (operator !== null && secondNumber.length < 8){
+				secondNumber +='7';
+				displayBox.textContent += '7';
 			}
-			displayBox.textContent += '7';
 			break;
 		case 'eightBtn':
-			if (operator === null) { 
+			if (operator === null && displayBox.textContent.length < 8) { 
 				firstNumber +='8'; 
-			}else{
-				secondNumber +='8'
+				displayBox.textContent += '8';
+			}else if (operator !== null && secondNumber.length < 8){
+				secondNumber +='8';
+				displayBox.textContent += '8';
 			}
-			displayBox.textContent += '8';
 			break;
 		case 'nineBtn':
-			if (operator === null) { 
+			if (operator === null && displayBox.textContent.length < 8) { 
 				firstNumber +='9'; 
-			}else{
+				displayBox.textContent += '9';
+				console.log(firstNumber, firstNumber.length);
+			}else if (operator !== null && secondNumber.length < 8){
 				secondNumber +='9'
+				displayBox.textContent += '9';
+				console.log(secondNumber, secondNumber.length);
 			}
-			displayBox.textContent += '9';
+			console.log(displayBox.textContent);
 			break;
 		case 'negNumBtn':
 			if (operator === null) { 
@@ -174,7 +193,6 @@ calcContainer.addEventListener('click', (event) => {
 			}
 			break;
 		case 'decimalBtn':
-	console.log(typeof firstNumber == 'string');
 			if (operator === null ) { 
 				if(!firstNumber.includes('.')){
 				firstNumber +='.'; 
@@ -185,13 +203,15 @@ calcContainer.addEventListener('click', (event) => {
 				displayBox.textContent += '.';
 			}
 			break;
+		
 		case 'equalBtn':
 			const a = parseFloat(firstNumber);
 			const b = parseFloat(secondNumber);
-			const result = operate(a, b, operator);
+			const result = operate(a, b, operator).toString().substring(0, 15);
+			console.log(result);
 			operator = null;
 			displayBox.textContent = result;
-			firstNumber= result.toString();
+			firstNumber= result;
 			secondNumber = '';
 			break;
 	}
