@@ -1,13 +1,15 @@
 
 let firstNumber = ('').substring(0, 8);
 let secondNumber = ('').substring(0, 8);
-
 let operator = null;
 let operatorDisplay;
+const add = (a, b) => a + b;
+const subtract = (a, b) => a - b;
+const multiply = (a, b) => a * b;
+const divide = (a, b) => a / b;
+const power = (a, b) => Math.pow(a, b);
 
-
-
-const operate = function (a, b, operator) {
+const operate = (a, b, operator) => {
     if (operator == add) {
 		return add(a,b);
 	}else if(operator == subtract){
@@ -21,23 +23,8 @@ const operate = function (a, b, operator) {
 	};
 };
 
-const add = function(a, b) {
-	return a + b;
-};
-const subtract = function(a, b) {
-	return a - b;
-};
-const multiply = function(a, b) {
-    return a * b;
-};
-const divide = function (a, b) {
-    return a / b;
-}
-const power = function(a, b) {
-	return Math.pow(a, b);
-};
-
 const body = document.querySelector("body");
+body.setAttribute("ID", "body");
 const calcContainer = document.createElement("div");
 calcContainer.setAttribute("ID", "calcContainer");
 body.appendChild(calcContainer);
@@ -46,7 +33,6 @@ body.appendChild(calcContainer);
 
 calcContainer.addEventListener('click', (event) => {
 	let target = event.target;
-	
 	switch (target.id) {
 		case 'clearBtn':
 			firstNumber = '';
@@ -203,14 +189,15 @@ calcContainer.addEventListener('click', (event) => {
 			break;
 		
 		case 'equalBtn':
+			if(operator !== null && secondNumber !== ''){
 			const a = parseFloat(firstNumber);
 			const b = parseFloat(secondNumber);
 			const result = operate(a, b, operator).toString().substring(0, 15);
-			console.log(result);
-			operator = null;
 			displayBox.innerHTML = result;
+			operator = null;
 			firstNumber= result;
 			secondNumber = '';
+			}
 			break;
 	}
 });
@@ -230,69 +217,33 @@ const rowFiveButtons = document.createElement("div");
 calcContainer.append(displayBox, rowOneButtons, rowTwoButtons,  
 				rowThreeButtons, rowFourButtons, rowFiveButtons);
 
-const clearBtn = document.createElement("button");
-	clearBtn.textContent = "AC";
-	clearBtn.setAttribute("ID", "clearBtn");
-const negNumBtn = document.createElement("button");
-	negNumBtn.textContent = "+/-";
-	negNumBtn.setAttribute("ID", "negNumBtn");
-const powerBtn = document.createElement("button");
-	powerBtn.textContent = "x^";
-	powerBtn.setAttribute("ID", "powerBtn");
-const divideBtn = document.createElement("button");
-	divideBtn.textContent = "/";
-	divideBtn.setAttribute("ID", "divideBtn");
-rowOneButtons.append(clearBtn, negNumBtn, powerBtn, divideBtn);
+const buttonValues = [
+	{text: '0', row: rowFiveButtons, id: 'zeroBtn', class: 'numberBtns'},
+	{text: '1', row: rowFourButtons, id: 'oneBtn', class: 'numberBtns'},
+	{text: '2', row: rowFourButtons, id: 'twoBtn', class: 'numberBtns'},
+	{text: '3', row: rowFourButtons, id: 'threeBtn', class: 'numberBtns'},
+	{text: '4', row: rowThreeButtons, id: 'fourBtn', class: 'numberBtns'},
+	{text: '5', row: rowThreeButtons, id: 'fiveBtn', class: 'numberBtns'},
+	{text: '6', row: rowThreeButtons, id: 'sixBtn', class: 'numberBtns'},
+	{text: '7', row: rowTwoButtons, id: 'sevenBtn', class: 'numberBtns'},
+	{text: '8', row: rowTwoButtons, id: 'eightBtn', class: 'numberBtns'},
+	{text: '9', row: rowTwoButtons, id: 'nineBtn', class: 'numberBtns'},
+	{text: '.', row: rowFiveButtons, id: 'decimalBtn', class: 'numberBtns'},
+	{text: 'x', row: rowTwoButtons, id: 'multiplyBtn', class: 'operatorBtns'},
+	{text: 'AC', row: rowOneButtons, id: 'clearBtn'},
+	{text: '+/-', row: rowOneButtons, id: 'negNumBtn'},
+	{text: 'x^', row: rowOneButtons, id: 'powerBtn', class: 'operatorBtns'},
+	{text: '/', row: rowOneButtons, id: 'divideBtn', class: 'operatorBtns'},
+	{text: '+', row: rowFourButtons, id: 'addBtn', class: 'operatorBtns'},
+	{text: '-', row: rowThreeButtons, id: 'subtractBtn', class: 'operatorBtns'},
+	{text: '=', row: rowFiveButtons, id: 'equalBtn'},
+];
 
-const sevenBtn = document.createElement("button");
-	sevenBtn.textContent = "7";
-	sevenBtn.setAttribute("ID", "sevenBtn");
-const eightBtn = document.createElement("button");
-	eightBtn.textContent = "8";
-	eightBtn.setAttribute("ID", "eightBtn");
-const nineBtn = document.createElement("button");
-	nineBtn.textContent = "9";
-	nineBtn.setAttribute("ID", "nineBtn");
-const multiplyBtn = document.createElement("button");
-	multiplyBtn.textContent = "X";
-	multiplyBtn.setAttribute("ID", "multiplyBtn");
-rowTwoButtons.append(sevenBtn,eightBtn, nineBtn, multiplyBtn);
-
-const fourBtn = document.createElement("button");
-	fourBtn.textContent = "4";
-	fourBtn.setAttribute("ID", "fourBtn");
-const fiveBtn = document.createElement("button");
-	fiveBtn.textContent = "5";
-	fiveBtn.setAttribute("ID", "fiveBtn");
-const sixBtn = document.createElement("button");
-	sixBtn.textContent = "6";
-	sixBtn.setAttribute("ID", "sixBtn");
-const subtractBtn = document.createElement("button");
-	subtractBtn.textContent = "-";
-	subtractBtn.setAttribute("ID", "subtractBtn");
-rowThreeButtons.append(fourBtn, fiveBtn, sixBtn, subtractBtn)
-
-const oneBtn = document.createElement("button");
-	oneBtn.textContent= "1";
-	oneBtn.setAttribute("ID", "oneBtn");
-const twoBtn = document.createElement("button");
-	twoBtn.textContent = "2";
-	twoBtn.setAttribute("ID", "twoBtn");
-const threeBtn = document.createElement("button");
-	threeBtn.textContent = "3";
-	threeBtn.setAttribute("ID", "threeBtn");
-const addBtn = document.createElement("button");
-	addBtn.textContent = "+";
-	addBtn.setAttribute("ID", "addBtn");
-rowFourButtons.append(oneBtn, twoBtn, threeBtn, addBtn);
-
-const zeroBtn = document.createElement("button");
-	zeroBtn.textContent = "0";
-	zeroBtn.setAttribute("ID", "zeroBtn");
-const decimalBtn = document.createElement("button");
-	decimalBtn.textContent = ".";
-	decimalBtn.setAttribute("ID", "decimalBtn");
-const equalBtn = document.createElement("button");
-	equalBtn.textContent = "=";
-	equalBtn.setAttribute("ID", "equalBtn");
-rowFiveButtons.append(zeroBtn, decimalBtn, equalBtn);
+buttonValues.forEach((btn) => {
+	const button = document.createElement("button");
+	button.textContent = btn.text;
+	button.classList.add("allCalcBtns");
+	button.setAttribute("ID", btn.id);
+	button.setAttribute("class", btn.class);
+	btn.row.appendChild(button);
+});

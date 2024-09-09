@@ -1,33 +1,57 @@
 
+#body {
+    background-color: black;
+}
+
 #calcContainer {
-    max-width: 200px;
-    max-height: 400px;
-    flex: 1;
+    align-self: center;
+    margin-top: 100px;
+    margin: auto;
+    width: 200px;
+    height: 325px;
+    background-color: black;
+    border: solid, rgb(71, 69, 69), 5px;
 }
 
 #displayBox {
     text-align: right;
-    min-height: 50px;
-    min-width: 10px;
-    border: solid, black, 1px;
-    font-size: 25px;
+    min-height: 75px;
+    min-width: 200px;
+    box-sizing: border-box;
+    border: solid, black, 5px;
+    font-size: 30px;
+    background-color: rgb(214, 204, 204);
 }
 
 .rows {
-    flex: 1;
-  
-    min-width: 500px;
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
 }
 
-#oneBtn, #twoBtn, #threeBtn, #fourBtn, #fiveBtn, 
-#sixBtn, #sevenBtn, #eightBtn, #nineBtn, #zeroBtn, 
-#addBtn, #subtractBtn, #multiplyBtn, #divideBtn, 
-#decimalBtn, #powerBtn, #negNumBtn, #clearBtn {
+.numberBtns, .operatorBtns, 
+#decimalBtn, #negNumBtn, #clearBtn {
     min-width: 50px;
     min-height: 50px;
+    background: orange;
+    font-weight: bold;
+    font-size: 15px;
 }
 
 #equalBtn {
     min-width: 100px;
     min-height: 50px;
+    background-color: rgb(92, 199, 252);
 }
+
+.numberBtns, #decimalBtn {
+    background-color: rgb(159, 157, 157);
+}
+#clearBtn {
+    background-color: rgb(181, 64, 64);
+}
+
+#negNumBtn {
+    background-color: rgb(241, 228, 117) ;
+}
+
