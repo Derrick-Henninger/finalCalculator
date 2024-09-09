@@ -3,7 +3,6 @@ let firstNumber = '';
 let secondNumber = '';
 let operator = null;
 let operatorDisplay;
-const symbols = ["+", "-", "x", "^", "/", ];
 
 const operate = function (a, b, operator) {
     if (operator == add) {
@@ -141,36 +140,35 @@ calcContainer.addEventListener('click', (event) => {
 			break;
 		case 'powerBtn':
 			if (operator === null){
-			displayBox.textContent += '^';
+			displayBox.textContent += ' ^ ';
 			operator = power;
 			operatorDisplay = '^';
 			}
 			break;
 		case 'divideBtn':
 			if (operator === null){
-			displayBox.textContent += '/';
+			displayBox.textContent += ' / ';
 			operator = divide;
 			operatorDisplay = '/';
 			}
 			break;
 		case 'multiplyBtn':
 			if (operator === null){
-			displayBox.textContent += 'x';
+			displayBox.textContent += ' x ';
 			operator = multiply;
 			operatorDisplay = 'x';
 			}
 			break;
 		case 'addBtn':
 			if (operator === null){
-			console.log(firstNumber);
-			displayBox.textContent += '+';
+			displayBox.textContent += ' + ';
 			operator = add;
 			operatorDisplay = '+';
 			}
 			break;
 		case 'subtractBtn':
 			if (operator === null){
-			displayBox.textContent += '-';
+			displayBox.textContent += ' - ';
 			operator = subtract;
 			operatorDisplay = '-';
 			}
@@ -191,13 +189,10 @@ calcContainer.addEventListener('click', (event) => {
 			const a = parseFloat(firstNumber);
 			const b = parseFloat(secondNumber);
 			const result = operate(a, b, operator);
-			firstNumber = result;
-			console.log(firstNumber);
-			firstNumber = firstNumber.toString();
 			operator = null;
-			displayBox.textContent = firstNumber;
-	//find a way to use the result as the next first number to continue calculations
-	//also need to limit the result to a specific amount of decimal places.
+			displayBox.textContent = result;
+			firstNumber= result.toString();
+			secondNumber = '';
 			break;
 	}
 });
