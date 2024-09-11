@@ -29,8 +29,6 @@ const calcContainer = document.createElement("div");
 calcContainer.setAttribute("ID", "calcContainer");
 body.appendChild(calcContainer);
 
-
-
 calcContainer.addEventListener('click', (event) => {
 	let target = event.target;
 	switch (target.id) {
@@ -192,7 +190,12 @@ calcContainer.addEventListener('click', (event) => {
 			if(operator !== null && secondNumber !== ''){
 			const a = parseFloat(firstNumber);
 			const b = parseFloat(secondNumber);
-			const result = operate(a, b, operator).toString().substring(0, 15);
+			if ((a + b) >= 9,999,999,999,999){
+				displayBox.innerHTML = '<img src="steamboat.gif" alt="TooManyNumbers" id="steamboat">Too Many Nums';
+				console.log(displayBox.innerHTML);
+				break;
+			};
+			const result = operate(a, b, operator).toString();
 			displayBox.innerHTML = result;
 			operator = null;
 			firstNumber= result;

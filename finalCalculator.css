@@ -7,7 +7,7 @@
     align-self: center;
     margin-top: 100px;
     margin: auto;
-    width: 200px;
+    width: 300px;
     height: 325px;
     background-color: black;
     border: solid, rgb(71, 69, 69), 5px;
@@ -15,23 +15,28 @@
 
 #displayBox {
     text-align: right;
-    min-height: 75px;
-    min-width: 200px;
+    height: 75px;
+    width: 300px;
     box-sizing: border-box;
     border: solid, black, 5px;
     font-size: 30px;
     background-color: rgb(214, 204, 204);
 }
 
+#steamboat {
+    width: 290px;
+    height: 65px;
+}
+
 .rows {
     display: flex;
     justify-content: space-between;
-    width: 200px;
+    width: 300px;
 }
 
 .numberBtns, .operatorBtns, 
 #decimalBtn, #negNumBtn, #clearBtn {
-    min-width: 50px;
+    min-width: 75px;
     min-height: 50px;
     background: orange;
     font-weight: bold;
@@ -39,7 +44,7 @@
 }
 
 #equalBtn {
-    min-width: 100px;
+    min-width: 150px;
     min-height: 50px;
     background-color: rgb(92, 199, 252);
 }
