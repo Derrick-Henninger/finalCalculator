@@ -1,6 +1,6 @@
 
-let firstNumber = ('').substring(0, 8);
-let secondNumber = ('').substring(0, 8);
+let firstNumber = '';
+let secondNumber = '';
 let operator = null;
 let operatorDisplay;
 const add = (a, b) => a + b;
@@ -22,13 +22,29 @@ const operate = (a, b, operator) => {
 		return power(a,b);
 	};
 };
-let test = '5468';
+const equals = function () {
+if(operator !== null && secondNumber !== ''){
+	const a = parseFloat(firstNumber);
+	const b = parseFloat(secondNumber);
+	if ((a + b) >= 9999999999999){
+		displayBoxContainer.innerHTML = '<img src="steamboat.gif" alt="TooManyNumbers" id="steamboat">';
+		displayBoxLeft.innerHTML = 'Too<br>Many<br>Numbers';
+		return;
+	};
+	const result = operate(a, b, operator).toString();
+	displayBoxLeft.innerHTML += `<br>${a}${operatorDisplay}${b}=${result}`;
+	console.log(displayBoxLeft.innerHTML);
+	displayBoxRight.innerHTML = result;
+	displayBoxCenter.innerHTML = '=';
+	operator = null;
+	firstNumber= result;
+	secondNumber = '';
+	}
+};
+
 const backSpace = function(str) {
 	return str.substring(0, (str.length - 1));
 };
-
-backSpace(test);
-console.log(test);
 
 const body = document.querySelector("body");
 body.setAttribute("ID", "body");
@@ -43,177 +59,188 @@ calcContainer.addEventListener('click', (event) => {
 			firstNumber = '';
 			secondNumber = '';
 			operator = null;
-			displayBox.innerHTML = '';
+			displayBoxRight.innerHTML = '';
+			displayBoxLeft.innerHTML = '';
+			displayBoxCenter.innerHTML = '';
 			break;
 		case 'zeroBtn':
-			if (operator === null && displayBox.textContent.length < 8) { 
+			if (operator === null && firstNumber.length < 8) { 
 				firstNumber +='0'; 
-				displayBox.innerHTML += '0';
+				displayBoxRight.innerHTML += '0';
 			}else if (operator !== null && secondNumber.length < 8){
 				secondNumber +='0';
-				displayBox.innerHTML += '0';
+				displayBoxRight.innerHTML += '0';
 			}
 			break;
 		case 'oneBtn':
-			if (operator === null && displayBox.textContent.length < 8) { 
+			if (operator === null && firstNumber.length < 8) { 
 				firstNumber +='1'; 
-				displayBox.innerHTML += '1';
+				displayBoxRight.innerHTML += '1';
 			}else if (operator !== null && secondNumber.length < 8){
 				secondNumber +='1';
-				displayBox.innerHTML += '1';
+				displayBoxRight.innerHTML += '1';
 			}
 			break;
 		case 'twoBtn':
-			if (operator === null && displayBox.textContent.length < 8) { 
+			if (operator === null && firstNumber.length < 8) { 
 				firstNumber +='2'; 
-				displayBox.innerHTML += '2';
+				displayBoxRight.innerHTML += '2';
 			}else if (operator !== null && secondNumber.length < 8){
 				secondNumber +='2';
-				displayBox.innerHTML += '2';
+				displayBoxRight.innerHTML += '2';
 			}
 			break;
 		case 'threeBtn':
-			if (operator === null && displayBox.textContent.length < 8) { 
+			if (operator === null && firstNumber.length < 8) { 
 				firstNumber +='3'; 
-				displayBox.innerHTML += '3';
+				displayBoxRight.innerHTML += '3';
 			}else if (operator !== null && secondNumber.length < 8){
 				secondNumber +='3';
-				displayBox.innerHTML += '3';
+				displayBoxRight.innerHTML += '3';
 			}
 			break;
 		case 'fourBtn':
-			if (operator === null && displayBox.textContent.length < 8) { 
+			if (operator === null && firstNumber.length < 8) { 
 				firstNumber +='4'; 
-				displayBox.innerHTML += '4';
+				displayBoxRight.innerHTML += '4';
 			}else if (operator !== null && secondNumber.length < 8){
 				secondNumber +='4';
-				displayBox.innerHTML += '4';
+				displayBoxRight.innerHTML += '4';
 			}
 			break;
 		case 'fiveBtn':
-			if (operator === null && displayBox.textContent.length < 8) { 
+			if (operator === null && firstNumber.length < 8) { 
 				firstNumber +='5'; 
-				displayBox.innerHTML += '5';
+				displayBoxRight.innerHTML += '5';
 			}else if (operator !== null && secondNumber.length < 8){
 				secondNumber +='5';
-				displayBox.innerHTML += '5';
+				displayBoxRight.innerHTML += '5';
 			}
 			break;
 		case 'sixBtn':
-			if (operator === null && displayBox.textContent.length < 8) { 
+			if (operator === null && firstNumber.length < 8) { 
 				firstNumber +='6'; 
-				displayBox.innerHTML += '6';
+				displayBoxRight.innerHTML += '6';
 			}else if (operator !== null && secondNumber.length < 8){
 				secondNumber +='6';
-				displayBox.innerHTML += '6';
+				displayBoxRight.innerHTML += '6';
 			}
 			break;
 		case 'sevenBtn':
-			if (operator === null && displayBox.textContent.length < 8) { 
+			if (operator === null && firstNumber.length < 8) { 
 				firstNumber +='7'; 
-				displayBox.innerHTML += '7';
+				displayBoxRight.innerHTML += '7';
 			}else if (operator !== null && secondNumber.length < 8){
 				secondNumber +='7';
-				displayBox.innerHTML += '7';
+				displayBoxRight.innerHTML += '7';
 			}
 			break;
 		case 'eightBtn':
-			if (operator === null && displayBox.textContent.length < 8) { 
+			if (operator === null && firstNumber.length < 8) { 
 				firstNumber +='8'; 
-				displayBox.innerHTML += '8';
+				displayBoxRight.innerHTML += '8';
 			}else if (operator !== null && secondNumber.length < 8){
 				secondNumber +='8';
-				displayBox.innerHTML += '8';
+				displayBoxRight.innerHTML += '8';
 			}
 			break;
 		case 'nineBtn':
-			if (operator === null && displayBox.textContent.length < 8) { 
+			if (operator === null && firstNumber.length < 8) { 
 				firstNumber +='9'; 
-				displayBox.innerHTML += '9';
+				displayBoxRight.innerHTML += '9';
 			}else if (operator !== null && secondNumber.length < 8){
 				secondNumber +='9'
-				displayBox.innerHTML += '9';
+				displayBoxRight.innerHTML += '9';
 			}
-			console.log(displayBox.textContent);
+			console.log(displayBoxRight.textContent);
 			break;
 		case 'negNumBtn':
 			if (operator === null) { 
 				firstNumber = +firstNumber * -1;
-				displayBox.innerHTML = `${firstNumber}`;
+				displayBoxRight.innerHTML = `${firstNumber}`;
 				console.log(firstNumber);
 			}else{
 				secondNumber = +secondNumber * -1;
-				displayBox.innerHTML = `${firstNumber}${operatorDisplay}${secondNumber}`;
-			}
-			break;
-		case 'powerBtn':
-			if (operator === null){
-			displayBox.innerHTML += '<br> ^ ';
-			operator = power;
-			operatorDisplay = '^';
+				displayBoxRight.innerHTML = `${firstNumber}<br>${secondNumber}`;
 			}
 			break;
 		case 'divideBtn':
-			if (operator === null){
-			displayBox.innerHTML += '<br> / ';
+			if (operator !== null){
+				equals();
+			}
+			displayBoxCenter.innerHTML = '/';
+			displayBoxRight.innerHTML = `${firstNumber}<br>${secondNumber}`;
 			operator = divide;
 			operatorDisplay = '/';
-			}
 			break;
 		case 'multiplyBtn':
-			if (operator === null){
-			displayBox.innerHTML += '<br> x ';
+			if (operator !== null && secondNumber !== ''){
+				equals();
+			}
+			displayBoxCenter.innerHTML = 'x';
+			displayBoxRight.innerHTML = `${firstNumber}<br>${secondNumber}`;
 			operator = multiply;
 			operatorDisplay = 'x';
-			}
 			break;
 		case 'addBtn':
-			if (operator === null){
-			displayBox.innerHTML += '<br> + ';
+			if (operator !== null){
+				equals();
+			}
+			displayBoxCenter.innerHTML = '+';
+			displayBoxRight.innerHTML = `${firstNumber}<br>${secondNumber}`;
 			operator = add;
 			operatorDisplay = '+';
-			}
 			break;
 		case 'subtractBtn':
-			if (operator === null){
-			displayBox.innerHTML += '<br> - ';
+			if (operator !== null){
+				equals();
+			}
+			displayBoxCenter.innerHTML = '-';
+			displayBoxRight.innerHTML = `${firstNumber}<br>${secondNumber}`;
 			operator = subtract;
 			operatorDisplay = '-';
-			}
 			break;
 		case 'decimalBtn':
 			if (operator === null ) { 
 				if(!firstNumber.includes('.')){
 				firstNumber +='.'; 
-				displayBox.innerHTML += '.';
+				displayBoxRight.innerHTML += '.';
 				}
 			}else if(!secondNumber.includes('.')){
 				secondNumber +='.'
-				displayBox.innerHTML += '.';
+				displayBoxRight.innerHTML += '.';
 			}
 			break;
 		
 		case 'equalBtn':
-			if(operator !== null && secondNumber !== ''){
-			const a = parseFloat(firstNumber);
-			const b = parseFloat(secondNumber);
-			if ((a + b) >= 9,999,999,999,999){
-				displayBox.innerHTML = '<img src="steamboat.gif" alt="TooManyNumbers" id="steamboat">';
-				console.log(displayBox.innerHTML);
-				break;
-			};
-			const result = operate(a, b, operator).toString();
-			displayBox.innerHTML = result;
-			operator = null;
-			firstNumber= result;
-			secondNumber = '';
-			}
+			equals();
+			break;
+		case 'backspaceBtn':
+			if(operator === null){
+				firstNumber = backSpace(firstNumber);
+				console.log(firstNumber);
+			}else if(secondNumber === '' && operator !== null){
+				operator = null;
+				displayBoxCenter.innerHTML = '';
+				console.log(operator);
+			}else{
+			secondNumber = backSpace(secondNumber);
+			console.log(firstNumber, secondNumber);
+			}	
+			displayBoxRight.innerHTML = backSpace(displayBoxRight.innerHTML);
 			break;
 	}
 });
 
-const displayBox = document.createElement("div");
-displayBox.setAttribute("ID", "displayBox");
+
+const displayBoxContainer = document.createElement("div");
+	displayBoxContainer.setAttribute("ID", "displayBoxContainer");
+const displayBoxLeft = document.createElement("div");
+	displayBoxLeft.setAttribute("ID", "displayBoxLeft");
+const displayBoxCenter = document.createElement("div");
+	displayBoxCenter.setAttribute("ID", "displayBoxCenter");
+const displayBoxRight = document.createElement("div");
+	displayBoxRight.setAttribute("ID", "displayBoxRight");
 const rowOneButtons = document.createElement("div");
 	rowOneButtons.setAttribute("class", "rows");
 const rowTwoButtons = document.createElement("div");
@@ -224,8 +251,10 @@ const rowFourButtons = document.createElement("div");
 	rowFourButtons.setAttribute("class", "rows");
 const rowFiveButtons = document.createElement("div");
 	rowFiveButtons.setAttribute("class", "rows");
-calcContainer.append(displayBox, rowOneButtons, rowTwoButtons,  
+calcContainer.append(displayBoxContainer, rowOneButtons, rowTwoButtons,  
 				rowThreeButtons, rowFourButtons, rowFiveButtons);
+displayBoxContainer.append(displayBoxLeft, displayBoxCenter, displayBoxRight);
+
 
 const buttonValues = [
 	{text: '0', row: rowFiveButtons, id: 'zeroBtn', class: 'numberBtns'},
@@ -241,8 +270,8 @@ const buttonValues = [
 	{text: '.', row: rowFiveButtons, id: 'decimalBtn', class: 'numberBtns'},
 	{text: 'x', row: rowTwoButtons, id: 'multiplyBtn', class: 'operatorBtns'},
 	{text: 'AC', row: rowOneButtons, id: 'clearBtn'},
+	{text: 'BS', row: rowOneButtons, id: 'backspaceBtn'},
 	{text: '+/-', row: rowOneButtons, id: 'negNumBtn'},
-	{text: 'x^', row: rowOneButtons, id: 'powerBtn', class: 'operatorBtns'},
 	{text: '/', row: rowOneButtons, id: 'divideBtn', class: 'operatorBtns'},
 	{text: '+', row: rowFourButtons, id: 'addBtn', class: 'operatorBtns'},
 	{text: '-', row: rowThreeButtons, id: 'subtractBtn', class: 'operatorBtns'},
