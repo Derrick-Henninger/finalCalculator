@@ -27,8 +27,8 @@ if(operator !== null && secondNumber !== ''){
 	const a = parseFloat(firstNumber);
 	const b = parseFloat(secondNumber);
 	if ((a + b) >= 9999999999999){
-		displayBoxContainer.innerHTML = '<img src="steamboat.gif" alt="TooManyNumbers" id="steamboat">';
-		displayBoxLeft.innerHTML = 'Too<br>Many<br>Numbers';
+		
+		displayBoxLeft.innerHTML = 'Number<br>Too<br>Large';
 		return;
 	};
 	const result = operate(a, b, operator).toString();
