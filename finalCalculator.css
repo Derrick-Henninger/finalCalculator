@@ -5,11 +5,11 @@
 
 #calcContainer {
     align-self: center;
-    margin-top: 100px;
-    margin: auto;
+    padding: 3px;
+    margin: 100px auto auto auto;
     width: 300px;
     height: 325px;
-    background-color: black;
+    background-color: rgb(24, 23, 23);
     border: solid, rgb(71, 69, 69), 5px;
 }
 
@@ -53,10 +53,10 @@
     background-color: rgb(159, 157, 157);
 }
 #clearBtn {
-    background-color: rgb(181, 64, 64);
+    background-color: rgb(207, 41, 41);
 }
 
 #negNumBtn {
-    background-color: rgb(241, 228, 117) ;
+    background-color: rgb(255, 230, 0) ;
 }
 

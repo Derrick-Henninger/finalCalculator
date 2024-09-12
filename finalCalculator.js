@@ -22,6 +22,13 @@ const operate = (a, b, operator) => {
 		return power(a,b);
 	};
 };
+let test = '5468';
+const backSpace = function(str) {
+	return str.substring(0, (str.length - 1));
+};
+
+backSpace(test);
+console.log(test);
 
 const body = document.querySelector("body");
 body.setAttribute("ID", "body");
@@ -191,7 +198,7 @@ calcContainer.addEventListener('click', (event) => {
 			const a = parseFloat(firstNumber);
 			const b = parseFloat(secondNumber);
 			if ((a + b) >= 9,999,999,999,999){
-				displayBox.innerHTML = '<img src="steamboat.gif" alt="TooManyNumbers" id="steamboat">Too Many Nums';
+				displayBox.innerHTML = '<img src="steamboat.gif" alt="TooManyNumbers" id="steamboat">';
 				console.log(displayBox.innerHTML);
 				break;
 			};
