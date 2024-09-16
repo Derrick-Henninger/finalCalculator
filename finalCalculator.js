@@ -27,15 +27,12 @@ if(operator !== null && secondNumber !== ''){
 	const a = parseFloat(firstNumber);
 	const b = parseFloat(secondNumber);
 	if ((a + b) >= 9999999999999){
-		
 		displayBoxLeft.innerHTML = 'Number<br>Too<br>Large';
 		return;
 	};
 	const result = operate(a, b, operator).toString();
-	displayBoxLeft.innerHTML += `<br>${a}${operatorDisplay}${b}=${result}`;
-	console.log(displayBoxLeft.innerHTML);
-	displayBoxRight.innerHTML = result;
-	displayBoxCenter.innerHTML = '=';
+	displayBoxLeft.innerHTML += `<br>${a} ${operatorDisplay} ${b} = ${result}`;
+	displayBoxRight.innerHTML = `= ${result}`;
 	operator = null;
 	firstNumber= result;
 	secondNumber = '';
@@ -61,7 +58,6 @@ calcContainer.addEventListener('click', (event) => {
 			operator = null;
 			displayBoxRight.innerHTML = '';
 			displayBoxLeft.innerHTML = '';
-			displayBoxCenter.innerHTML = '';
 			break;
 		case 'zeroBtn':
 			if (operator === null && firstNumber.length < 8) { 
@@ -152,13 +148,11 @@ calcContainer.addEventListener('click', (event) => {
 				secondNumber +='9'
 				displayBoxRight.innerHTML += '9';
 			}
-			console.log(displayBoxRight.textContent);
 			break;
 		case 'negNumBtn':
 			if (operator === null) { 
 				firstNumber = +firstNumber * -1;
 				displayBoxRight.innerHTML = `${firstNumber}`;
-				console.log(firstNumber);
 			}else{
 				secondNumber = +secondNumber * -1;
 				displayBoxRight.innerHTML = `${firstNumber}<br>${secondNumber}`;
@@ -168,17 +162,15 @@ calcContainer.addEventListener('click', (event) => {
 			if (operator !== null){
 				equals();
 			}
-			displayBoxCenter.innerHTML = '/';
-			displayBoxRight.innerHTML = `${firstNumber}<br>${secondNumber}`;
+			displayBoxRight.innerHTML = `${firstNumber}<br>÷ ${secondNumber}`;
 			operator = divide;
-			operatorDisplay = '/';
+			operatorDisplay = '÷';
 			break;
 		case 'multiplyBtn':
 			if (operator !== null && secondNumber !== ''){
 				equals();
 			}
-			displayBoxCenter.innerHTML = 'x';
-			displayBoxRight.innerHTML = `${firstNumber}<br>${secondNumber}`;
+			displayBoxRight.innerHTML = `${firstNumber}<br>x ${secondNumber}`;
 			operator = multiply;
 			operatorDisplay = 'x';
 			break;
@@ -186,8 +178,7 @@ calcContainer.addEventListener('click', (event) => {
 			if (operator !== null){
 				equals();
 			}
-			displayBoxCenter.innerHTML = '+';
-			displayBoxRight.innerHTML = `${firstNumber}<br>${secondNumber}`;
+			displayBoxRight.innerHTML = `${firstNumber}<br>+ ${secondNumber}`;
 			operator = add;
 			operatorDisplay = '+';
 			break;
@@ -195,19 +186,18 @@ calcContainer.addEventListener('click', (event) => {
 			if (operator !== null){
 				equals();
 			}
-			displayBoxCenter.innerHTML = '-';
-			displayBoxRight.innerHTML = `${firstNumber}<br>${secondNumber}`;
+			displayBoxRight.innerHTML = `${firstNumber}<br>- ${secondNumber}`;
 			operator = subtract;
 			operatorDisplay = '-';
 			break;
 		case 'decimalBtn':
 			if (operator === null ) { 
 				if(!firstNumber.includes('.')){
-				firstNumber +='.'; 
+				firstNumber +='.0'; 
 				displayBoxRight.innerHTML += '.';
 				}
 			}else if(!secondNumber.includes('.')){
-				secondNumber +='.'
+				secondNumber +='.0'
 				displayBoxRight.innerHTML += '.';
 			}
 			break;
@@ -221,7 +211,6 @@ calcContainer.addEventListener('click', (event) => {
 				console.log(firstNumber);
 			}else if(secondNumber === '' && operator !== null){
 				operator = null;
-				displayBoxCenter.innerHTML = '';
 				console.log(operator);
 			}else{
 			secondNumber = backSpace(secondNumber);
@@ -232,13 +221,10 @@ calcContainer.addEventListener('click', (event) => {
 	}
 });
 
-
 const displayBoxContainer = document.createElement("div");
 	displayBoxContainer.setAttribute("ID", "displayBoxContainer");
 const displayBoxLeft = document.createElement("div");
 	displayBoxLeft.setAttribute("ID", "displayBoxLeft");
-const displayBoxCenter = document.createElement("div");
-	displayBoxCenter.setAttribute("ID", "displayBoxCenter");
 const displayBoxRight = document.createElement("div");
 	displayBoxRight.setAttribute("ID", "displayBoxRight");
 const rowOneButtons = document.createElement("div");
@@ -253,7 +239,7 @@ const rowFiveButtons = document.createElement("div");
 	rowFiveButtons.setAttribute("class", "rows");
 calcContainer.append(displayBoxContainer, rowOneButtons, rowTwoButtons,  
 				rowThreeButtons, rowFourButtons, rowFiveButtons);
-displayBoxContainer.append(displayBoxLeft, displayBoxCenter, displayBoxRight);
+displayBoxContainer.append(displayBoxLeft, displayBoxRight);
 
 
 const buttonValues = [
